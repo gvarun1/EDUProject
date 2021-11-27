@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+  {% if form.errors %}
+    <p>Your username and password didn't match. Please try again.</p>
+  {% endif %}
+
+  {% if next %}
+    {% if user.is_authenticated %}
+      <p>Your account doesn't have access to this page. To proceed,
+      please login with an account that has access.</p>
+    {% else %}
+      <p>Please login to see this page.</p>
+    {% endif %}
+  {% endif %}
+
+  <!--<form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+    <table>
+      <tr>
+        <td >{{ form.username.label_tag }}</td>
+        <td>{{ form.username }}</td>
+      </tr>
+      <tr>
+        <td >{{ form.password.label_tag }}</td>
+        <td>{{ form.password }}</td>
+      </tr>
+    </table>
+    <input type="submit" value="login" />
+    <input type="hidden" name="next" value="{{ next }}" />
+  </form>
+
+  {# Assumes you setup the password_reset view in your URLconf #}
+  <p><a href="{% url 'password_reset' %}">Lost password?</a></p>-->
+  <div class="container-fluid px-1 px-md-5 px-lg-1 px-xl-5 py-5 mx-auto">
+    <div class="row d-flex">
+      <div class="col-lg-6">
+          <div class="card1 pb-5">
+              <div class="row px-3 justify-content-center mt-4 mb-5 border-line"> <img src="{% static '/Edtube/images/login.png' %}" class="image"> </div>
+          </div>
+      </div>
+      <div class="col-lg-6">
+          <div class="card2 card border-0 px-4 py-5">
+              <div class="row mb-4 px-3">
+                  <h3 class="mb-0 mr-4 mt-2">Sign in</h3>
+              </div>
+              <form method="post" action="{% url 'login' %}">
+                  {% csrf_token %}
+                  <div class="row px-3">
+                    <label class="mb-1">
+                      <h6 class="mb-0 text-sm">{{ form.username.label_tag }}</h6>
+                    </label>
+                      {{ form.username }}
+                  </div>
+                  <div class="row px-3">
+                    <label class="mb-1">
+                      <h6 class="mb-0 text-sm">{{ form.password.label_tag }}</h6>
+                    </label>
+                    {{ form.password }}
+                  </div>
+                    
+                  <div class="row mb-3 px-3"> <button type="submit" class="btn btn-blue text-center">Login</button> </div>
+                  <input type="hidden" name="next" value="{{ next }}" />
+              </form>
+              <div class="row mb-4 px-3"> <small class="font-weight-bold">Don't have an account? <a class="text-danger ">Register</a></small> </div>
+          </div>
+      </div>
+  </div>
+</div>
+
+<style>
+  
+
+
+
+.card2 {
+    margin: 0px 40px
+}
+
+
+
+.image {
+    width: 360px;
+    height: auto;
+}
+
+.border-line {
+    border-right: 1px solid #EEEEEE
+}
+
+
+
+
+.line {
+    height: 1px;
+    width: 45%;
+    background-color: #E0E0E0;
+    margin-top: 10px
+}
+
+
+
+.text-sm {
+    font-size: 14px !important
+}
+
+::placeholder {
+    color: #BDBDBD;
+    opacity: 1;
+    font-weight: 300
+}
+
+:-ms-input-placeholder {
+    color: #BDBDBD;
+    font-weight: 300
+}
+
+::-ms-input-placeholder {
+    color: #BDBDBD;
+    font-weight: 300
+}
+
+input,
+textarea {
+    padding: 10px 12px 10px 12px;
+    border: 1px solid lightgrey;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    color: #2C3E50;
+    font-size: 14px;
+    letter-spacing: 1px
+}
+
+input:focus,
+textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #304FFE;
+    outline-width: 0
+}
+
+button:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0
+}
+
+a {
+    color: inherit;
+    cursor: pointer
+}
+
+.btn-blue {
+    background-color: #1A237E;
+    width: 150px;
+    color: #fff;
+    border-radius: 2px
+}
+
+.btn-blue:hover {
+    background-color: #000;
+    cursor: pointer
+}
+
+.bg-blue {
+    color: #fff;
+    background-color: #1A237E
+}
+
+@media screen and (max-width: 991px) {
+    .logo {
+        margin-left: 0px
+    }
+
+    .image {
+        width: 300px;
+        height: 220px
+    }
+
+    .border-line {
+        border-right: none
+    }
+
+    .card2 {
+        border-top: 1px solid #EEEEEE !important;
+        margin: 0px 15px
+    }
+}
+</style>
+{% endblock %}

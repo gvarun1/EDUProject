@@ -1,0 +1,22 @@
+
+{% extends 'student_base.html' %}
+{% block title %}Dashboard{% endblock title %}
+{% block username %}{{ user.student.first_name }}{% endblock username %}
+{% block content %}
+{% if user.is_authenticated %}
+  {% if user.type == "Student" %}
+  user is {{user.type}}
+  Hi {{ user.student.first_name }}!
+  you are enrolled in {{ user.student.classroom}}
+  
+
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+  {%else%}
+  <p> You are logged in as teacher. You don't have acess for students dashboard</p>
+  {%endif%}
+
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.type == "Student" %}
+  <meta http-equiv="REFRESH" content="0;url=student-dashboard"> 
+  {% else %}
+  <meta http-equiv="REFRESH" content="0;url=#"> 
+  {% endif %}
+      
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}

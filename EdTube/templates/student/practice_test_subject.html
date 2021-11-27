@@ -1,0 +1,57 @@
+{% extends 'student_base.html' %}
+{% load static %}
+{% block title %}Dashboard{% endblock title %}
+{% block username %}{{ user.student.first_name }}{% endblock username %}
+{% block content %}
+{% if user.is_authenticated %}
+{% if user.type == "Student" %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-10">
+      <a href="{% url 'home' %}">Home</a>-><a href="{%url 'practice-test'%}">Test -> Practice Test</a>
+    </div>
+    <div class="col-2">
+      <button class="btn btn-rounded" style="background-color: #5D5FEF;">Upgrade Class</button>
+    </div>
+  </div>
+</div>
+
+<h2>Select Subject</h2>
+<div class="card">
+  <div class="card-body">
+    <div class="container">
+      <div class="row">
+        {% for subject in object_list %}
+        <div class ="col-xl-2 colsm-3 col mx-center">
+          <div class="container">
+            <div class ="row">
+              <div class="col-12 mx-center">
+                <img src="{% static '/Edtube/images/subject_icon/'%}{{subject.subject_name}}.png" width="150" height="150">
+              </div>
+              <div class="col-12 mx-center">
+                <center>{{subject.subject_name}}</center>
+              </div>
+            </div>
+          </div>
+          
+          
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    
+        
+    
+  </div>
+</div>
+  
+  
+  {%else%}
+  <p> You are logged in as teacher. You don't have acess for students dashboard</p>
+  {%endif%}
+
+{% else %}
+  <p>You are not logged in</p>
+  <a href="{% url 'login' %}">Log In</a>
+{% endif %}
+{% endblock %}
